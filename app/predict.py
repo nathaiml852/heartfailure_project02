@@ -1,7 +1,7 @@
 import pandas as pd
 import xgboost as xgb
 from app.model_loader import load_model
-from app.metrics import PREDICTION_COUNT, PREDICTION_LATENCY
+from app.metrics import PREDICTION_COUNT, PREDICTION_LATENCY,PREDICTION_ERROR_TYPE
 
 # Load model
 model = load_model()
