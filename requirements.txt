@@ -1,0 +1,6 @@
+gradio
+pandas
+xgboost
+scikit-learn
+joblib
+prometheus-client # For monitoring

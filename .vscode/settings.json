@@ -1,0 +1,6 @@
+{
+  "python.defaultInterpreterPath": "/Users/maradugudwarakanath/Documents/AI_ML_Course/Module_7_Parallel_Computer_Architecture_andProgramming_Models/Mini-Project/heartfailure_project/heartfailure/bin/python",
+  "python.analysis.extraPaths": ["./app"],
+  "python.analysis.useLibraryCodeForTypes": true,
+  "python.analysis.typeCheckingMode": "off"
+}
