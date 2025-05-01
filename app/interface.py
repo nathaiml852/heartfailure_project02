@@ -9,6 +9,10 @@ logging.basicConfig(level=logging.INFO)
 def launch_ui():
     logging.info("Initializing Gradio interface...")
 
+    # Wrap predict_death_event with `source="gradio"` injected
+    def predict_with_source(*args):
+        return predict_death_event(*args, source="gradio")
+
     iface = gr.Interface(
         fn=predict_death_event,
         inputs=input_components,
