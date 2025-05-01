@@ -1,0 +1,57 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# VSCode settings
+.vscode/
+
+# MacOS files
+.DS_Store
+
+# Python egg and distribution info
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Logs and local runtime files
+*.log
+*.tmp
+*.pid
+
+# Docker-related
+*.tar
+*.img
+
+# Model artifacts
+*.joblib
+*.pkl
+*.sav
+*.h5
+*.onnx
+
+# Environment and secrets
+.env
+.env.*
+
+# Gradio specific
+gradio_cached_examples/
+gradio_cache/
+gradio_static/
+
+# Prometheus output (optional if you export locally)
+metrics.prom
+
+# Compiled shared objects
+*.so
