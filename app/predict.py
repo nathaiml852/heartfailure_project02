@@ -1,18 +1,12 @@
-# app/predict.py
-
 import pandas as pd
 import xgboost as xgb
-import prometheus_client
-from prometheus_client import Counter, Histogram
 from app.model_loader import load_model
-import time
+from app.metrics import PREDICTION_COUNT, PREDICTION_LATENCY
 
+# Load model
 model = load_model()
 
-# Define Prometheus metrics
-PREDICTION_COUNT = Counter("predictions_total", "Total prediction requests", ["status"])
-PREDICTION_LATENCY = Histogram("prediction_duration_seconds", "Time spent in prediction")
-
+# Define the prediction function with Prometheus metrics tracking
 @PREDICTION_LATENCY.time()
 def predict_death_event(age, anaemia, creatinine_phosphokinase, diabetes, ejection_fraction,
                         high_blood_pressure, platelets, serum_creatinine, serum_sodium,
@@ -32,13 +26,20 @@ def predict_death_event(age, anaemia, creatinine_phosphokinase, diabetes, ejecti
             "smoking": smoking,
             "time": time
         }
+        
+        # Prepare the input for the model
         df = pd.DataFrame([input_dict])
         dmatrix = xgb.DMatrix(df)
+        
+        # Make the prediction
         prediction = int(model.predict(dmatrix)[0] >= 0.5)
 
+        # Increment prediction success count
         PREDICTION_COUNT.labels(status="success").inc()
 
         return "YES - Death event likely." if prediction == 1 else "NO - Death event not likely."
+
     except Exception as e:
+        # Increment prediction error count
         PREDICTION_COUNT.labels(status="error").inc()
         return f"Prediction error: {str(e)}"
